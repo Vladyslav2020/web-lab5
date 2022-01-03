@@ -31,7 +31,7 @@ export class QueryService {
                 type: 'danger',
             });
             setTimeout(this.hideMessage, 3000);
-            console.error(errors);
+            console.log(errors);
             return null;
         }
         return data.todo;
@@ -55,7 +55,7 @@ export class QueryService {
                 type: 'danger',
             });
             setTimeout(this.hideMessage, 3000);
-            console.error(errors);
+            console.log(errors);
             return null;
         }
         this.showMessage({
@@ -88,7 +88,7 @@ export class QueryService {
                 type: 'danger',
             });
             setTimeout(this.hideMessage, 3000);
-            console.error(errors);
+            console.log(errors);
             return null;
         }
         this.showMessage({
@@ -119,7 +119,7 @@ export class QueryService {
                 type: 'danger',
             });
             setTimeout(this.hideMessage, 3000);
-            console.error(errors);
+            console.log(errors);
             return null;
         }
         this.showMessage({
@@ -135,7 +135,7 @@ export class QueryService {
     }
 
     fetchGraphQL = async (queryString, operationName, variables) => {
-        let data = null;
+        let data = { data: null, errors: null };
         try {
             this.showLoader();
             const response = await fetch(Config.url, {
@@ -153,6 +153,7 @@ export class QueryService {
         } catch (err) {
             this.showMessage({ message: err.message, type: 'danger' });
             setTimeout(this.hideMessage, 3000);
+            data.errors = err;
         }
         setTimeout(() => this.hideLoader(), 300);
         return data;
