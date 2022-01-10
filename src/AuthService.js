@@ -1,5 +1,4 @@
 import createAuth0Client from '@auth0/auth0-spa-js';
-import { Config } from './Config';
 
 export class AuthService {
     constructor(authData, setAuthData, showMessage, hideMessage) {
@@ -11,8 +10,8 @@ export class AuthService {
 
     createClient = async () => {
         return await createAuth0Client({
-            domain: Config.domain,
-            client_id: Config.clientId,
+            domain: process.env.REACT_APP_DOMAIN,
+            client_id: process.env.REACT_APP_CLIENT_ID,
         });
     };
 
@@ -31,7 +30,6 @@ export class AuthService {
         } catch (err) {
             this.showMessage({ message: 'Failed to log in', type: 'danger' });
             setTimeout(this.hideMessage, 3000);
-            console.log(err);
         } finally {
             this.setAuthData(prevState => ({ ...prevState, popupOpen: false }));
         }

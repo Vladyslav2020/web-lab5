@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import User from './User';
 
 const Header = ({ authData, login, logout, loading }) => {

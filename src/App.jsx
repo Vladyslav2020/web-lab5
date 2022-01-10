@@ -82,7 +82,6 @@ function App() {
                 type: 'danger',
             });
             setTimeout(hideMessage, 3000);
-            console.log(err);
         } finally {
             setLoading(false);
         }

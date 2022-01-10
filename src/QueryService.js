@@ -1,5 +1,3 @@
-import { Config } from './Config';
-
 export class QueryService {
     static downloadQuery = `
       query DownloadTodos {
@@ -31,7 +29,6 @@ export class QueryService {
                 type: 'danger',
             });
             setTimeout(this.hideMessage, 3000);
-            console.log(errors);
             return null;
         }
         return data.todo;
@@ -55,7 +52,6 @@ export class QueryService {
                 type: 'danger',
             });
             setTimeout(this.hideMessage, 3000);
-            console.log(errors);
             return null;
         }
         this.showMessage({
@@ -88,7 +84,6 @@ export class QueryService {
                 type: 'danger',
             });
             setTimeout(this.hideMessage, 3000);
-            console.log(errors);
             return null;
         }
         this.showMessage({
@@ -119,7 +114,6 @@ export class QueryService {
                 type: 'danger',
             });
             setTimeout(this.hideMessage, 3000);
-            console.log(errors);
             return null;
         }
         this.showMessage({
@@ -138,7 +132,7 @@ export class QueryService {
         let data = { data: null, errors: null };
         try {
             this.showLoader();
-            const response = await fetch(Config.url, {
+            const response = await fetch(process.env.REACT_APP_URL, {
                 method: 'POST',
                 body: JSON.stringify({
                     query: queryString,
